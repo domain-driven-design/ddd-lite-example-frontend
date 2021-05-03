@@ -1,59 +1,28 @@
-import { Form, Input, Button, message } from "antd";
+import { message } from "antd";
+import {useState, useEffect } from "react"
 import axios from "../common/axios"
 
-import "./Article.css";
-
 export default function Article(props) {
-  const onFinish = (values) => {
-    axios
-      .post("/articles", values)
-      .then(function (response) {
-        message.success("发布成功");
-        props.history.push("/articles");
-      })
-      .catch(function (error) {
-        message.error("发布失败");
-      });
-  };
+  const [articleInfo, setArticleInfo] = useState({});
+
+  function getArticle(id) {
+    axios.get(id)
+    .then(function (data) {
+      setArticleInfo(data);
+    })
+    .catch(function (error) {
+      message.error("获取文章失败");
+    });
+  }
+
+  useEffect(() => {
+    getArticle(props.match.params.id);
+  }, [props.match.params.id]);
 
   return (
     <div>
-      <div className="article-form">
-        <Form name="article" onFinish={onFinish}>
-          <Form.Item
-            label="标题"
-            name="title"
-            rules={[
-              {
-                required: true,
-                message: "标题必填",
-              },
-            ]}
-          >
-            <Input />
-          </Form.Item>
-
-          <Form.Item
-            label="内容"
-            name="content"
-            rules={[
-              {
-                required: true,
-                message: "内容必填",
-              },
-            ]}
-          >
-            <Input.TextArea rows={4} />
-          </Form.Item>
-          <Form.Item>
-            <div>
-              <Button type="primary" htmlType="submit">
-                发布
-              </Button>
-            </div>
-          </Form.Item>
-        </Form>
-      </div>
+      <h2>{articleInfo.title}</h2>
+      <p>{articleInfo.content}</p>
     </div>
   );
 }

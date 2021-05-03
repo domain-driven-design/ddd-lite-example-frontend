@@ -2,9 +2,9 @@ import { useState, useEffect } from "react";
 import { Pagination, Card, message } from "antd";
 import axios from "../common/axios";
 
-import "./Articles.css"
+import "./Articles.css";
 
-export default function Articles() {
+export default function Articles(props) {
   const size = 10;
   const [content, setContent] = useState([]);
   const [page, setPage] = useState(1);
@@ -20,7 +20,7 @@ export default function Articles() {
         params: {
           page: page - 1,
           size,
-          sort: "createdAt,desc"
+          sort: "createdAt,desc",
         },
       })
       .then(function (data) {
@@ -36,12 +36,16 @@ export default function Articles() {
     setPage(page);
   }
 
+  function clickArticle(id) {
+    props.history.push("/articles/" + id);
+  }
+
   return (
     <div>
       <h1>文章列表</h1>
       {content.map((item) => (
-        <Card title={item.title} key={item.id} className="article-item">
-          <p>{item.content}</p>
+        <Card title={item.title} key={item.id} className="article-item" onClick={() => clickArticle(item.id)}>
+          <p className="article-content">{item.content}</p>
           <p>{item.createdAt}</p>
         </Card>
       ))}

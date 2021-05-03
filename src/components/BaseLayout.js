@@ -15,8 +15,8 @@ export default function BaseLayout(props) {
           <Menu.Item key="/articles">
             <Link to="/articles">发现</Link>
           </Menu.Item>
-          <Menu.Item key="/article">
-            <Link to="/article">创作</Link>
+          <Menu.Item key="/articles/new">
+            <Link to="/articles/new">创作</Link>
           </Menu.Item>
           <Menu.Item key="/user">
             <Link to="/user">个人中心</Link>
