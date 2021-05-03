@@ -21,15 +21,15 @@ const tailLayout = {
 
 export default function Login(props) {
   const onFinish = (values) => {
-    axios.post('/authorizes', values)
+    axios
+      .post("/authorizes", values)
       .then(function (response) {
-        message.success("登录成功")
+        message.success("登录成功");
         window.localStorage["token"] = response.data.token;
         props.history.push("/");
       })
       .catch(function (error) {
-          console.log("login error")
-        message.error("邮箱或密码错误")
+        message.error("邮箱或密码错误");
       });
   };
 
@@ -68,6 +68,7 @@ export default function Login(props) {
             <Button type="primary" htmlType="submit">
               提交
             </Button>
+            <a className="register-link" href="/register">前往注册</a>
           </Form.Item>
         </Form>
       </div>
