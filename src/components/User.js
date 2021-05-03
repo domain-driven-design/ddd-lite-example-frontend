@@ -1,8 +1,8 @@
 import { useState, useEffect } from "react";
-import { Descriptions, message } from "antd";
+import { Descriptions, message, Button } from "antd";
 import axios from "../common/axios";
 
-export default function User() {
+export default function User(props) {
   const [userInfo, setUserInfo] = useState({});
 
   function getUserInfo() {
@@ -14,6 +14,13 @@ export default function User() {
       .catch(function (error) {
         message.error("获取个人信息失败");
       });
+  }
+
+  function logout() {
+    window.localStorage.removeItem("token");
+    window.localStorage.removeItem("userId");
+    axios.delete("/authorizes");
+    props.history.push("/login");
   }
 
   useEffect(() => {
@@ -29,6 +36,7 @@ export default function User() {
           {userInfo.createdAt}
         </Descriptions.Item>
       </Descriptions>
+      <Button onClick={logout}>登出</Button>
     </div>
   );
 }
