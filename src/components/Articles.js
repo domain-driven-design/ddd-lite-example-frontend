@@ -20,6 +20,7 @@ export default function Articles() {
         params: {
           page: page - 1,
           size,
+          sort: "createdAt,desc"
         },
       })
       .then(function (response) {

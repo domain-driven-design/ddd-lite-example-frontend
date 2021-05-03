@@ -6,23 +6,29 @@ import "./BaseLayout.css";
 const { Header, Content } = Layout;
 
 export default function BaseLayout(props) {
-  const location = useLocation();  
+  const location = useLocation();
 
   return (
     <Layout>
       <Header>
-        <Menu theme="dark" mode="horizontal" defaultSelectedKeys={[location.pathname]}>
+        <Menu
+          theme="dark"
+          mode="horizontal"
+          defaultSelectedKeys={[location.pathname]}
+        >
           <Menu.Item key="/">
             <Link to="/">首页</Link>
-            </Menu.Item>
+          </Menu.Item>
           <Menu.Item key="/articles">
-            <Link to="/articles">文章</Link>
-            </Menu.Item>
+            <Link to="/articles">发现</Link>
+          </Menu.Item>
+          <Menu.Item key="/article">
+            <Link to="/article">创作</Link>
+          </Menu.Item>
           <Menu.Item key="/user">
             <Link to="/user">个人中心</Link>
           </Menu.Item>
         </Menu>
-        
       </Header>
       <Content>
         <div className="site-layout-content">{props.children}</div>

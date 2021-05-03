@@ -5,6 +5,7 @@ import Register from "./components/Register";
 import Login from "./components/Login";
 import Home from "./components/Home";
 import User from "./components/User";
+import Article from "./components/Article";
 import Articles from "./components/Articles";
 
 import BaseLayout from "./components/BaseLayout";
@@ -19,6 +20,7 @@ function App() {
           <Switch>
             <Route path="/user" component={User} />
             <Route path="/articles" component={Articles} />
+            <Route path="/article" component={Article} />
             <Route path="/" component={Home} />
           </Switch>
         </BaseLayout>
