@@ -1,21 +1,14 @@
-import React from "react";
-import { Link, useLocation } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { Layout, Menu } from "antd";
 import "./BaseLayout.css";
 
 const { Header, Content } = Layout;
 
 export default function BaseLayout(props) {
-  const location = useLocation();
-
   return (
     <Layout>
       <Header>
-        <Menu
-          theme="dark"
-          mode="horizontal"
-          defaultSelectedKeys={[location.pathname]}
-        >
+        <Menu theme="dark" mode="horizontal" selectedKeys={props.location.pathname}>
           <Menu.Item key="/">
             <Link to="/">首页</Link>
           </Menu.Item>
