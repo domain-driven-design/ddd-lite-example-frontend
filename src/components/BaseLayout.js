@@ -22,6 +22,7 @@ export default function BaseLayout(props) {
             <Link to="/user">个人中心</Link>
           </Menu.Item>
         </Menu>
+        
       </Header>
       <Content>
         <div className="site-layout-content">{props.children}</div>

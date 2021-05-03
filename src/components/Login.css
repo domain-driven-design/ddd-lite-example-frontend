@@ -1,0 +1,11 @@
+.login-page {
+  display: flex;
+  justify-content: center;
+}
+
+.login-title {
+  text-align: center;
+}
+.login-form {
+  width: 80%;
+}

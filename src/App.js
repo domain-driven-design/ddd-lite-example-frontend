@@ -12,15 +12,15 @@ import BaseLayout from "./components/BaseLayout";
 function App() {
   return (
     <Router>
-      <BaseLayout>
-        <Switch>
-          <Route path="/register" component={Register} />
-          <Route path="/login" component={Login} />
+      <Switch>
+        <Route path="/register" component={Register} />
+        <Route path="/login" component={Login} />
+        <BaseLayout>
           <Route path="/user" component={User} />
           <Route path="/articles" component={Articles} />
           <Route path="/" component={Home} />
-        </Switch>
-      </BaseLayout>
+        </BaseLayout>
+      </Switch>
     </Router>
   );
 }
