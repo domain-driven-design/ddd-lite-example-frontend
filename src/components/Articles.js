@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { Pagination, Card, message } from "antd";
-import axios from "axios";
+import axios from "../common/axios";
 
 import "./Articles.css"
 
@@ -23,8 +23,7 @@ export default function Articles() {
           sort: "createdAt,desc"
         },
       })
-      .then(function (response) {
-        const data = response.data;
+      .then(function (data) {
         setContent(data.content);
         setTotal(data.totalElements);
       })

@@ -1,6 +1,6 @@
 import React from "react";
 import { Form, Input, Button, message } from "antd";
-import axios from "axios";
+import axios from "../common/axios";
 
 import "./Login.css";
 
@@ -23,10 +23,10 @@ export default function Login(props) {
   const onFinish = (values) => {
     axios
       .post("/authorizes", values)
-      .then(function (response) {
+      .then(function (data) {
         message.success("登录成功");
-        window.localStorage["userId"] = response.data.userId;
-        window.localStorage["token"] = response.data.token;
+        window.localStorage["userId"] = data.userId;
+        window.localStorage["token"] = data.token;
         props.history.push("/");
       })
       .catch(function (error) {

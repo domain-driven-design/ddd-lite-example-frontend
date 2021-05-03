@@ -1,19 +1,15 @@
 import { useState, useEffect } from "react";
 import { Descriptions, message } from "antd";
-import axios from "axios";
+import axios from "../common/axios";
 
 export default function User() {
   const [userInfo, setUserInfo] = useState({});
 
   function getUserInfo() {
     axios
-      .get("/users/me", {
-        headers: {
-          Authorization: `Bearer ${window.localStorage.getItem("token")}`,
-        },
-      })
-      .then(function (response) {
-        setUserInfo(response.data);
+      .get("/users/me")
+      .then(function (data) {
+        setUserInfo(data);
       })
       .catch(function (error) {
         message.error("获取个人信息失败");

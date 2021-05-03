@@ -1,16 +1,12 @@
 import { Form, Input, Button, message } from "antd";
-import axios from "axios";
+import axios from "../common/axios"
 
 import "./Article.css";
 
 export default function Article(props) {
   const onFinish = (values) => {
     axios
-      .post("/articles", values, {
-        headers: {
-          Authorization: `Bearer ${window.localStorage.getItem("token")}`,
-        },
-      })
+      .post("/articles", values)
       .then(function (response) {
         message.success("发布成功");
         props.history.push("/articles");
