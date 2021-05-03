@@ -25,6 +25,7 @@ export default function Login(props) {
       .post("/authorizes", values)
       .then(function (response) {
         message.success("登录成功");
+        window.localStorage["userId"] = response.data.userId;
         window.localStorage["token"] = response.data.token;
         props.history.push("/");
       })
