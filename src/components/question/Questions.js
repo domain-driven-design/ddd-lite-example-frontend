@@ -2,7 +2,7 @@ import React, {useEffect, useState} from "react";
 import axios from "../../common/axios";
 import {Card, message, Pagination} from "antd";
 
-import "../Articles.css";
+import "./Questions.css";
 import CreateQuestions from "./CreateQuestion";
 
 export default function Questions() {
@@ -49,6 +49,7 @@ export default function Questions() {
                 <Card title={item.title} key={item.id} className="question-item">
                     <p className="question-content">{item.description}</p>
                     <p>{item.createdAt}</p>
+                    <a href={`/questions/${item.id}`} target="view_window">查看详情</a>
                 </Card>
             ))}
             <Pagination
