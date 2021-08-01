@@ -4,6 +4,7 @@ import {Card, message, Pagination} from "antd";
 
 import "./Questions.css";
 import CreateQuestions from "./CreateQuestion";
+import CreateAnswer from "./CreateAnswer";
 
 export default function Questions() {
     const size = 10;
@@ -48,8 +49,17 @@ export default function Questions() {
             {content.map((item) => (
                 <Card title={item.title} key={item.id} className="question-item">
                     <p className="question-content">{item.description}</p>
-                    <p>{item.createdAt}</p>
                     <a href={`/questions/${item.id}`} target="view_window">查看详情</a>
+                    <div>
+                        <p>{item.createdAt}</p>
+                        <CreateAnswer
+                            groupId={"default"}
+                            questionId={item.id}
+                            questionTitle={item.title}
+                            questionDescription={item.description}
+                        >
+                        </CreateAnswer>
+                    </div>
                 </Card>
             ))}
             <Pagination
