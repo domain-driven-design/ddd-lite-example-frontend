@@ -3,7 +3,7 @@ import {Button, Form, Input, message, Modal} from "antd";
 
 import axios from "../../common/axios";
 
-export default function CreateQuestions() {
+export default function CreateQuestions(props) {
     const [visible, setVisible] = React.useState(false);
     const [confirmLoading, setConfirmLoading] = React.useState(false);
 
@@ -17,16 +17,18 @@ export default function CreateQuestions() {
     const handleOk = () => {
         setConfirmLoading(true);
         axios
-            .post("/groups/default/questions", form.getFieldsValue())
+            .post(  `/groups/${props.groupId}/questions`, form.getFieldsValue())
             .then(function (response) {
+                message.success("发布成功");
                 setConfirmLoading(false);
                 setVisible(false);
-                message.success("发布成功");
+                form.resetFields();
+                props.OnCreateQuestionSuccess();
             })
             .catch(function (error) {
+                message.error("发布失败");
                 setConfirmLoading(false);
                 setVisible(false);
-                message.error("发布失败");
             });
     };
 

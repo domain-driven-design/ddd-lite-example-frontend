@@ -37,9 +37,14 @@ export default function Questions() {
         setPage(page);
     }
 
+    function OnCreateQuestionSuccess() {
+        setPage(0);
+        getQuestions(page, size);
+    }
+
     return (
         <div>
-            <CreateQuestions></CreateQuestions>
+            <CreateQuestions groupId={"default"} OnCreateQuestionSuccess={OnCreateQuestionSuccess}></CreateQuestions>
             {content.map((item) => (
                 <Card title={item.title} key={item.id} className="question-item">
                     <p className="question-content">{item.content}</p>
