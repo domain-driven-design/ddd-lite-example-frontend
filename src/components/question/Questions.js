@@ -47,7 +47,7 @@ export default function Questions() {
             <CreateQuestions groupId={"default"} OnCreateQuestionSuccess={OnCreateQuestionSuccess}></CreateQuestions>
             {content.map((item) => (
                 <Card title={item.title} key={item.id} className="question-item">
-                    <p className="question-content">{item.content}</p>
+                    <p className="question-content">{item.description}</p>
                     <p>{item.createdAt}</p>
                 </Card>
             ))}

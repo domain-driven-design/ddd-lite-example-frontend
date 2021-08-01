@@ -15,21 +15,27 @@ export default function CreateQuestions(props) {
     };
 
     const handleOk = () => {
-        setConfirmLoading(true);
-        axios
-            .post(  `/groups/${props.groupId}/questions`, form.getFieldsValue())
-            .then(function (response) {
-                message.success("发布成功");
-                setConfirmLoading(false);
-                setVisible(false);
-                form.resetFields();
-                props.OnCreateQuestionSuccess();
-            })
-            .catch(function (error) {
-                message.error("发布失败");
-                setConfirmLoading(false);
-                setVisible(false);
-            });
+        form.validateFields().then(values => {
+            setConfirmLoading(true);
+
+            axios
+                .post(  `/groups/${props.groupId}/questions`, values)
+                .then(function (response) {
+                    message.success("发布成功");
+                    setConfirmLoading(false);
+                    setVisible(false);
+                    form.resetFields();
+                    props.OnCreateQuestionSuccess();
+                })
+                .catch(function (error) {
+                    message.error("发布失败");
+                    setConfirmLoading(false);
+                    setVisible(false);
+                });
+        })
+
+
+
     };
 
     const handleCancel = () => {
