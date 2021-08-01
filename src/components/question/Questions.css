@@ -1,0 +1,13 @@
+.question-item {
+  margin: 16px 0;
+}
+
+.question-content {
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+.pagination {
+  margin: 16px 0;
+}

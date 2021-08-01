@@ -6,7 +6,7 @@ import Login from "./components/auth/Login";
 import User from "./components/user/User";
 
 import BaseLayout from "./components/BaseLayout";
-import Question from "./components/question/Question";
+import Questions from "./components/question/Questions";
 import Group from "./components/group/Group";
 
 function App() {
@@ -18,7 +18,7 @@ function App() {
                 <BaseLayout>
                     <Switch>
                         <Route path="/user" component={User}/>
-                        <Route path="/questions" component={Question}/>
+                        <Route path="/questions" component={Questions}/>
                         <Route path="/groups" component={Group}/>
                         <Route path="/me" component={User}/>
                     </Switch>
