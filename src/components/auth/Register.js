@@ -1,6 +1,6 @@
 import React from "react";
 import { Form, Input, Button, message } from "antd";
-import axios from "../common/axios";
+import axios from "../../common/axios";
 
 import "./Register.css";
 

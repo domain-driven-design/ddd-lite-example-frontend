@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { Descriptions, message, Button } from "antd";
-import axios from "../common/axios";
+import axios from "../../common/axios";
 
 export default function User(props) {
   const [userInfo, setUserInfo] = useState({});
