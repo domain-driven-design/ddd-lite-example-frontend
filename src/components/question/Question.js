@@ -1,6 +1,8 @@
 import { message } from "antd";
-import {useState, useEffect } from "react"
+import React, {useState, useEffect } from "react"
 import axios from "../../common/axios";
+import Answers from "./Answers";
+import CreateAnswer from "./CreateAnswer";
 
 export default function Question(props) {
     const [questionInfo, setQuestionInfo] = useState({});
@@ -23,6 +25,14 @@ export default function Question(props) {
         <div>
             <h2>{questionInfo.title}</h2>
             <p>{questionInfo.description}</p>
+            <CreateAnswer
+                groupId={"default"}
+                questionId={props.match.params.id}
+                questionTitle={questionInfo.title}
+                questionDescription={questionInfo.description}
+            >
+            </CreateAnswer>
+            <Answers groupId={"default"} questionId={props.match.params.id}></Answers>
         </div>
     );
 }
