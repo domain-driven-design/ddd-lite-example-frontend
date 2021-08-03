@@ -1,0 +1,13 @@
+.group-item {
+  margin: 16px 0;
+}
+
+.group-content {
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+.pagination {
+  margin: 16px 0;
+}

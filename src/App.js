@@ -7,7 +7,7 @@ import User from "./components/user/User";
 
 import BaseLayout from "./components/BaseLayout";
 import Questions from "./components/question/Questions";
-import Group from "./components/group/Group";
+import Group from "./components/group/Groups";
 import Question from "./components/question/Question";
 
 function App() {
