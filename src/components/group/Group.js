@@ -17,11 +17,12 @@ export default function Group(props) {
 
     useEffect(() => {
         getGroup(props.match.params.id);
-    }, [props.match.params.id]);
+    }, []);
 
     return (
         <div>
             <h2>{groupInfo.name}</h2>
+            <p>创建时间：{groupInfo.createdAt}，创建者：{groupInfo.creator?.name}，共有{groupInfo.members?.length}位成员</p>
             <p>{groupInfo.description}</p>
         </div>
     );
