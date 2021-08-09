@@ -7,8 +7,9 @@ import User from "./components/user/User";
 
 import BaseLayout from "./components/BaseLayout";
 import Questions from "./components/question/Questions";
-import Group from "./components/group/Groups";
+import Groups from "./components/group/Groups";
 import Question from "./components/question/Question";
+import Group from "./components/group/Group";
 
 function App() {
     return (
@@ -21,7 +22,8 @@ function App() {
                         <Route path="/user" component={User}/>
                         <Route path="/questions/:id" component={Question}/>
                         <Route path="/questions" component={Questions}/>
-                        <Route path="/groups" component={Group}/>
+                        <Route path="/groups/:id" component={Group}/>
+                        <Route path="/groups" component={Groups}/>
                         <Route path="/me" component={User}/>
                     </Switch>
                 </BaseLayout>

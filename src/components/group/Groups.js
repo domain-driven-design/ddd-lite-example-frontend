@@ -3,10 +3,9 @@ import axios from "../../common/axios";
 import {Card, message, Pagination} from "antd";
 
 import "./Groups.css";
-import CreateQuestions from "../question/CreateQuestion";
 import CreateGroup from "./CreateGroup";
 
-export default () => {
+export default function Groups() {
     const size = 10;
     const [content, setContent] = useState([]);
     const [page, setPage] = useState(1);
@@ -51,6 +50,7 @@ export default () => {
                     <p className="group-content">{item.description}</p>
                     <p>已有{item.members.length}位成员</p>
                     <p>{item.createdAt}</p>
+                    <a href={`/groups/${item.id}`} target="view_window">查看详情</a>
                 </Card>
             ))}
             <Pagination
