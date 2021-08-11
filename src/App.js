@@ -20,8 +20,8 @@ function App() {
                 <BaseLayout>
                     <Switch>
                         <Route path="/user" component={User}/>
-                        <Route path="/questions/:id" component={Question}/>
-                        <Route path="/questions" component={Questions}/>
+                        <Route path="/groups/:groupId/questions/:id" component={Question}/>
+                        <Route path="/groups/:groupId/questions" component={Questions}/>
                         <Route path="/groups/:id" component={Group}/>
                         <Route path="/groups" component={Groups}/>
                         <Route path="/me" component={User}/>

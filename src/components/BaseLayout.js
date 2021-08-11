@@ -10,8 +10,8 @@ export default function BaseLayout(props) {
             <Header>
                 <span className="logo" >问答平台</span>
                 <Menu theme="dark" mode="horizontal" selectedKeys={props.location.pathname}>
-                    <Menu.Item key="/questions">
-                        <Link to="/questions">问题</Link>
+                    <Menu.Item key="/groups/default/questions">
+                        <Link to="/groups/default/questions">问题</Link>
                     </Menu.Item>
                     <Menu.Item key="/groups">
                         <Link to="/groups">圈子</Link>

@@ -1,6 +1,7 @@
 import {message} from "antd";
 import React, {useEffect, useState} from "react"
 import axios from "../../common/axios";
+import Questions from "../question/Questions";
 
 export default function Group(props) {
     const [groupInfo, setGroupInfo] = useState({});

@@ -6,7 +6,7 @@ import "./Questions.css";
 import CreateQuestions from "./CreateQuestion";
 import CreateAnswer from "./CreateAnswer";
 
-export default function Questions() {
+export default function Questions(props) {
     const size = 10;
     const [content, setContent] = useState([]);
     const [page, setPage] = useState(1);
@@ -18,7 +18,7 @@ export default function Questions() {
 
     function getQuestions(page, size) {
         axios
-            .get("/groups/default/questions", {
+            .get(`/groups/${props.match.params.groupId}/questions`, {
                 params: {
                     page: page - 1,
                     size,
@@ -49,11 +49,11 @@ export default function Questions() {
             {content.map((item) => (
                 <Card title={item.title} key={item.id} className="question-item">
                     <p className="question-content">{item.description}</p>
-                    <a href={`/questions/${item.id}`} target="view_window">查看详情</a>
+                    <a href={`/groups/${props.match.params.groupId}/questions/${item.id}`} target="view_window">查看详情</a>
                     <div>
                         <p>{item.createdAt}</p>
                         <CreateAnswer
-                            groupId={"default"}
+                            groupId={props.match.params.groupId}
                             questionId={item.id}
                             questionTitle={item.title}
                             questionDescription={item.description}

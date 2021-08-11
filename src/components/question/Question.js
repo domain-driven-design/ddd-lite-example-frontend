@@ -5,10 +5,12 @@ import Answers from "./Answers";
 import CreateAnswer from "./CreateAnswer";
 
 export default function Question(props) {
+    console.log('props', props)
+
     const [questionInfo, setQuestionInfo] = useState({});
 
-    function getQuestion(id) {
-        axios.get(`/groups/default/questions/${id}`)
+    function getQuestion() {
+        axios.get(`/groups/${props.match.params.groupId}/questions/${props.match.params.id}`)
             .then(function (data) {
                 setQuestionInfo(data);
             })
@@ -18,8 +20,8 @@ export default function Question(props) {
     }
 
     useEffect(() => {
-        getQuestion(props.match.params.id);
-    }, [props.match.params.id]);
+        getQuestion();
+    }, []);
 
     return (
         <div>
@@ -32,7 +34,7 @@ export default function Question(props) {
                 questionDescription={questionInfo.description}
             >
             </CreateAnswer>
-            <Answers groupId={"default"} questionId={props.match.params.id}></Answers>
+            <Answers groupId={props.match.params.groupId} questionId={props.match.params.id}></Answers>
         </div>
     );
 }
