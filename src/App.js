@@ -6,10 +6,10 @@ import Login from "./components/auth/Login";
 import User from "./components/user/User";
 
 import BaseLayout from "./components/BaseLayout";
-import Questions from "./components/question/Questions";
 import Groups from "./components/group/Groups";
 import Question from "./components/question/Question";
 import Group from "./components/group/Group";
+import QuestionsPage from "./components/question/QuestionsPage";
 
 function App() {
     return (
@@ -21,7 +21,7 @@ function App() {
                     <Switch>
                         <Route path="/user" component={User}/>
                         <Route path="/groups/:groupId/questions/:id" component={Question}/>
-                        <Route path="/groups/:groupId/questions" component={Questions}/>
+                        <Route path="/groups/:groupId/questions" component={QuestionsPage}/>
                         <Route path="/groups/:id" component={Group}/>
                         <Route path="/groups" component={Groups}/>
                         <Route path="/me" component={User}/>
