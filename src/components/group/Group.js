@@ -7,6 +7,7 @@ import "./Group.css";
 
 export default function Group(props) {
     const [groupInfo, setGroupInfo] = useState({});
+    const [currentMember, setCurrentMember] = useState({});
     const userId = window.localStorage.userId;
     const id = props.match.params.id;
 
@@ -14,6 +15,8 @@ export default function Group(props) {
         axios.get(`/groups/${id}`)
             .then(function (data) {
                 setGroupInfo(data);
+                const member = data.members?.find(member => member.userId === userId, {});
+                setCurrentMember(member);
             })
             .catch(function (error) {
                 message.error("获取圈子详情失败");
@@ -48,15 +51,34 @@ export default function Group(props) {
             });
     }
 
+    function canManage() {
+        console.log("currentMember", currentMember)
+        return currentMember && (currentMember.role === "ADMIN" || currentMember.role === "OWNER");
+    }
+
+    function canExit() {
+        return currentMember && currentMember.role !== "OWNER";
+    }
+
+    function canJoin() {
+        return !currentMember;
+    }
+
     return (
         <div>
             <div className="group-heater">
                 <h2>{groupInfo.name}</h2>
-                {
-                    groupInfo.members?.find(member => member.userId === userId)
-                        ? <Button type="primary" onClick={() => exitGroup()}>退出圈子</Button>
-                        : <Button type="primary" onClick={() => joinGroup()}>加入圈子</Button>
-                }
+                <div>
+                    {
+                        canManage() && <Button type="primary">管理圈子</Button>
+                    }
+                    {
+                        canExit() && <Button type="primary" onClick={() => exitGroup()}>退出圈子</Button>
+                    }
+                    {
+                        canJoin() && <Button type="primary" onClick={() => joinGroup()}>加入圈子</Button>
+                    }
+                </div>
             </div>
             <p>创建时间：{groupInfo.createdAt}，创建者：{groupInfo.creator?.name}，共有{groupInfo.members?.length}位成员</p>
             <p>描述：{groupInfo.description}</p>
