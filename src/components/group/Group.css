@@ -1,0 +1,4 @@
+.group-heater {
+    display: flex;
+    justify-content: space-between;
+}
