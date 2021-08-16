@@ -2,10 +2,11 @@ import React, {useState} from "react"
 
 import "./GroupManagement.css";
 import {Menu} from "antd";
+import GroupMemberManagement from "./GroupMemberManagement";
 
 export default function GroupManagement(props) {
     const [currentMenuKey, setCurrentMenuKey] = useState("member");
-
+    const id = props.match.params.id;
 
     function handleMenuClick(e) {
         setCurrentMenuKey(e.key)
@@ -14,7 +15,7 @@ export default function GroupManagement(props) {
     function showManagementContent(key) {
         switch (key) {
             case "member":
-                return <p>member</p>;
+                return <GroupMemberManagement groupId={id}></GroupMemberManagement>;
             case "question":
                 return <p>question</p>;
             case "answer":

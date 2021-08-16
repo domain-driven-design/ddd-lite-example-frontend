@@ -1,0 +1,12 @@
+.group-member-management-item {
+    background-color: lightgray;
+    margin: 16px 0;
+    padding: 16px;
+
+    display: flex;
+    justify-content: space-between;
+}
+
+.group-member-management-item-name {
+    width: 128px;
+}
