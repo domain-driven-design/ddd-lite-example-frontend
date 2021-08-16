@@ -1,0 +1,13 @@
+.group-management {
+    display: flex;
+    justify-content: space-between;
+}
+
+.group-management-menu {
+    width: 256px;
+}
+
+.group-management-content {
+    width: 100%;
+    margin: 0 32px;
+}

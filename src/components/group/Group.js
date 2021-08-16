@@ -4,6 +4,7 @@ import axios from "../../common/axios";
 import Questions from "../question/Questions";
 
 import "./Group.css";
+import {Link} from "react-router-dom";
 
 export default function Group(props) {
     const [groupInfo, setGroupInfo] = useState({});
@@ -52,7 +53,6 @@ export default function Group(props) {
     }
 
     function canManage() {
-        console.log("currentMember", currentMember)
         return currentMember && (currentMember.role === "ADMIN" || currentMember.role === "OWNER");
     }
 
@@ -70,7 +70,7 @@ export default function Group(props) {
                 <h2>{groupInfo.name}</h2>
                 <div>
                     {
-                        canManage() && <Button type="primary">管理圈子</Button>
+                        canManage() && <Button type="primary"><Link to={props.match.url + "/management"}>管理圈子</Link></Button>
                     }
                     {
                         canExit() && <Button type="primary" onClick={() => exitGroup()}>退出圈子</Button>
