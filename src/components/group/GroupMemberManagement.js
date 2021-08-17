@@ -33,7 +33,7 @@ export default function GroupMemberManagement(props) {
             });
     }
 
-    function onChange(page) {
+    function onPageChange(page) {
         setPage(page);
     }
 
@@ -45,6 +45,18 @@ export default function GroupMemberManagement(props) {
             })
             .catch(function (error) {
                 message.error("修改失败");
+            });
+    }
+
+    function handleMemberRemove(memberId) {
+        axios
+            .delete(`/groups/${props.groupId}/members/${memberId}`)
+            .then(function (response) {
+                message.success("移除成功");
+                getGroups(page, size);
+            })
+            .catch(function (error) {
+                message.error("移除失败");
             });
     }
 
@@ -61,7 +73,12 @@ export default function GroupMemberManagement(props) {
                         <Option value="NORMAL">成员</Option>
                         <Option value="ADMIN">管理员</Option>
                     </Select>
-                    <Button type="primary" danger>移除</Button>
+                    <Button type="primary"
+                            danger
+                            onClick={() => handleMemberRemove(item.id)}
+                    >
+                        移除
+                    </Button>
                 </div>
             ))}
 
@@ -70,7 +87,7 @@ export default function GroupMemberManagement(props) {
                 defaultCurrent={page}
                 defaultPageSize={size}
                 total={total}
-                onChange={onChange}
+                onChange={onPageChange}
             />
         </div>
     )
