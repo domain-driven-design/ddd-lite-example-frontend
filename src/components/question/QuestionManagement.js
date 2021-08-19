@@ -36,6 +36,18 @@ export default function QuestionManagement(props) {
         setPage(page);
     }
 
+    function handleDeleteQuestion(questionId) {
+        axios
+            .delete(`/groups/${props.groupId}/questions/${questionId}`)
+            .then(function (data) {
+                message.success("删除成功");
+                getManagementQuestions(page, size);
+            })
+            .catch(function (error) {
+                message.error("删除失败");
+            });
+    }
+
     return (
         <div>
             {content.map((item) => (
@@ -45,7 +57,7 @@ export default function QuestionManagement(props) {
                         <Col span={8}>创建时间：{item.createdAt}</Col>
                         <Col span={6}>创建者：{item.creator.name}</Col>
                         <Col span={2}>
-                            <Button type="primary" danger>
+                            <Button type="primary" danger onClick={() => handleDeleteQuestion(item.id)}>
                                 删除
                             </Button>
                         </Col>
