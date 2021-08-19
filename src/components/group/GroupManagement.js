@@ -3,6 +3,7 @@ import React, {useState} from "react"
 import "./GroupManagement.css";
 import {Menu} from "antd";
 import GroupMemberManagement from "./GroupMemberManagement";
+import QuestionManagement from "../question/QuestionManagement";
 
 export default function GroupManagement(props) {
     const [currentMenuKey, setCurrentMenuKey] = useState("member");
@@ -17,7 +18,7 @@ export default function GroupManagement(props) {
             case "member":
                 return <GroupMemberManagement groupId={id}></GroupMemberManagement>;
             case "question":
-                return <p>question</p>;
+                return <QuestionManagement groupId={id}></QuestionManagement>;
             case "answer":
                 return <p>answer</p>;
             case "setting":
