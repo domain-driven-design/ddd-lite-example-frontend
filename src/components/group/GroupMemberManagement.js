@@ -37,9 +37,9 @@ export default function GroupMemberManagement(props) {
         setPage(page);
     }
 
-    function handleRoleChange(memberId, role) {
+    function handleRoleChange(userId, role) {
         axios
-            .put(`/groups/${props.groupId}/members/${memberId}`, {role})
+            .put(`/groups/${props.groupId}/members/${userId}`, {role})
             .then(function (response) {
                 message.success("修改成功");
             })
@@ -48,9 +48,9 @@ export default function GroupMemberManagement(props) {
             });
     }
 
-    function handleMemberRemove(memberId) {
+    function handleMemberRemove(userId) {
         axios
-            .delete(`/groups/${props.groupId}/members/${memberId}`)
+            .delete(`/groups/${props.groupId}/members/${userId}`)
             .then(function (response) {
                 message.success("移除成功");
                 getGroups(page, size);
@@ -68,14 +68,14 @@ export default function GroupMemberManagement(props) {
                     <div>加入时间：{item.createdAt}</div>
                     <Select defaultValue={item.role}
                             style={{width: 120}}
-                            onChange={(value) => handleRoleChange(item.id, value)}
+                            onChange={(value) => handleRoleChange(item.userId, value)}
                     >
                         <Option value="NORMAL">成员</Option>
                         <Option value="ADMIN">管理员</Option>
                     </Select>
                     <Button type="primary"
                             danger
-                            onClick={() => handleMemberRemove(item.id)}
+                            onClick={() => handleMemberRemove(item.userId)}
                     >
                         移除
                     </Button>

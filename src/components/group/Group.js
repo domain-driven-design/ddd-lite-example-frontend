@@ -30,7 +30,7 @@ export default function Group(props) {
 
     function joinGroup() {
         axios
-            .post(`/groups/${id}/members`)
+            .post(`/groups/${id}/members/me`)
             .then(function (response) {
                 message.success("加入成功");
                 getGroup(id);
