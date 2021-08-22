@@ -12,10 +12,10 @@ export default function GroupMemberManagement(props) {
     const [total, setTotal] = useState(0);
 
     useEffect(() => {
-        getGroups(page, size);
+        getManageGroupMembers(page, size);
     }, [page]);
 
-    function getGroups(page, size) {
+    function getManageGroupMembers(page, size) {
         axios
             .get(`/groups/${props.groupId}/members/management`, {
                 params: {
@@ -53,7 +53,7 @@ export default function GroupMemberManagement(props) {
             .delete(`/groups/${props.groupId}/members/${userId}`)
             .then(function (response) {
                 message.success("移除成功");
-                getGroups(page, size);
+                getManageGroupMembers(page, size);
             })
             .catch(function (error) {
                 message.error("移除失败");

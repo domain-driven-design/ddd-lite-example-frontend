@@ -5,6 +5,7 @@ import {Menu, message} from "antd";
 import GroupMemberManagement from "./GroupMemberManagement";
 import QuestionManagement from "../question/QuestionManagement";
 import axios from "../../common/axios";
+import GroupSetting from "./GroupSetting";
 
 export default function GroupManagement(props) {
     const [groupInfo, setGroupInfo] = useState({});
@@ -44,7 +45,7 @@ export default function GroupManagement(props) {
             case "answer":
                 return <p>answer</p>;
             case "setting":
-                return <p>setting</p>;
+                return <GroupSetting groupId={id}></GroupSetting>;
         }
     }
 
