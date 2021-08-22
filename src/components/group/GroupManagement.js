@@ -45,7 +45,7 @@ export default function GroupManagement(props) {
             case "answer":
                 return <p>answer</p>;
             case "setting":
-                return <GroupSetting groupId={id}></GroupSetting>;
+                return <GroupSetting groupId={id} groupInfo={groupInfo}></GroupSetting>;
         }
     }
 

@@ -2,7 +2,7 @@ import React, {useEffect, useState} from "react"
 
 import "./GroupMemberManagement.css"
 import axios from "../../common/axios";
-import {Button, message, Select} from "antd";
+import {Button, Divider, Form, Input, message, Select} from "antd";
 
 export default function GroupSetting(props) {
     const [members, setMembers] = useState([]);
@@ -46,13 +46,55 @@ export default function GroupSetting(props) {
             });
     }
 
+    const updateGroup = (values) => {
+        console.log("values", values)
+        axios
+            .put(`/groups/${props.groupId}`, values)
+            .then(function (data) {
+                message.success("修改成功");
+            })
+            .catch(function (error) {
+                message.error("修改失败");
+            });
+    }
+
     return (
         <div>
             <div>
-
-                <h3>圈子基本信息修改</h3>
-                <p>占位</p>
+                <h3>圈子基本信息</h3>
+                <Form onFinish={updateGroup} initialValues={props.groupInfo}>
+                    <Form.Item
+                        label="名称"
+                        name="name"
+                        rules={[
+                            {
+                                required: true,
+                                message: "名称必填",
+                            },
+                        ]}
+                    >
+                        <Input/>
+                    </Form.Item>
+                    <Form.Item
+                        label="描述"
+                        name="description"
+                        rules={[
+                            {
+                                required: true,
+                                message: "描述必填",
+                            },
+                        ]}
+                    >
+                        <Input.TextArea rows={4}/>
+                    </Form.Item>
+                    <Form.Item>
+                        <Button type="primary" htmlType="submit">
+                            提交修改
+                        </Button>
+                    </Form.Item>
+                </Form>
             </div>
+            <Divider/>
             <div>
                 <h3>移交</h3>
                 <Select style={{width: 120}} onChange={handleMemberSelectChange}>
