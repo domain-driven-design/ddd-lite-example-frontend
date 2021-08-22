@@ -47,7 +47,6 @@ export default function GroupSetting(props) {
     }
 
     const updateGroup = (values) => {
-        console.log("values", values)
         axios
             .put(`/groups/${props.groupId}`, values)
             .then(function (data) {

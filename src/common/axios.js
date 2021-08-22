@@ -21,7 +21,6 @@ service.interceptors.request.use(
 
 service.interceptors.response.use(
   (response) => {
-      console.log('response', response)
     if (response.status === 401) {
       message.error("认证失败，请重新登录");
       return Promise.reject("error");

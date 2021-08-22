@@ -1,13 +1,16 @@
-import { message } from "antd";
-import React, {useState, useEffect } from "react"
+import {message} from "antd";
+import React, {useEffect, useState} from "react"
 import axios from "../../common/axios";
 import Answers from "./Answers";
 import CreateAnswer from "./CreateAnswer";
+import UpdateQuestion from "./UpdateQuestion";
+
+import "./Question.css";
 
 export default function Question(props) {
-    console.log('props', props)
-
     const [questionInfo, setQuestionInfo] = useState({});
+
+    const userId = window.localStorage.userId;
 
     function getQuestion() {
         axios.get(`/groups/${props.match.params.groupId}/questions/${props.match.params.id}`)
@@ -25,8 +28,20 @@ export default function Question(props) {
 
     return (
         <div>
-            <h2>{questionInfo.title}</h2>
-            <p>{questionInfo.description}</p>
+            <div className="question-header">
+                <div>
+                    <h2>{questionInfo.title}</h2>
+                    <p>{questionInfo.description}</p>
+                </div>
+                {
+                    questionInfo.createdBy === userId &&
+                    <UpdateQuestion
+                        groupId={props.match.params.groupId}
+                        questionInfo={questionInfo}
+                        OnUpdateQuestionSuccess={() => getQuestion()}
+                    ></UpdateQuestion>
+                }
+            </div>
             <CreateAnswer
                 groupId={"default"}
                 questionId={props.match.params.id}
