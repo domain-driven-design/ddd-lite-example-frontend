@@ -3,12 +3,15 @@ import axios from "../../common/axios";
 import {message, Pagination} from "antd";
 
 import "./Answers.css";
+import UpdateAnswer from "./UpdateAnswer";
 
 export default function Answers(props) {
     const size = 10;
     const [content, setContent] = useState([]);
     const [page, setPage] = useState(1);
     const [total, setTotal] = useState(0);
+
+    const userId = window.localStorage.userId;
 
     useEffect(() => {
         getAnswers(page, size);
@@ -40,8 +43,20 @@ export default function Answers(props) {
         <div>
             {content.map((item) => (
                 <div key={item.id} className="answer-item">
-                    <p>{item.content}</p>
-                    <p>{item.createdAt}</p>
+                    <div>
+                        <p>{item.content}</p>
+                        <p>{item.createdAt}</p>
+                    </div>
+                    {
+                        item.createdBy === userId &&
+                        <UpdateAnswer
+                            groupId={props.groupId}
+                            questionId={props.questionId}
+                            answerInfo={item}
+                            OnUpdateAnswerSuccess={() => getAnswers(page, size)}
+                        />
+                    }
+
                 </div>
             ))}
             <Pagination

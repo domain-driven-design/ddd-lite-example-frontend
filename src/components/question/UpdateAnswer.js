@@ -3,12 +3,11 @@ import {Button, Form, Input, message, Modal} from "antd";
 
 import axios from "../../common/axios";
 
-export default function CreateAnswer(props) {
+export default function UpdateAnswer(props) {
     const [visible, setVisible] = React.useState(false);
     const [confirmLoading, setConfirmLoading] = React.useState(false);
 
     const [form] = Form.useForm();
-
 
     const showModal = () => {
         setVisible(true);
@@ -19,16 +18,16 @@ export default function CreateAnswer(props) {
             setConfirmLoading(true);
 
             axios
-                .post(`/groups/${props.groupId}/questions/${props.questionId}/answers`, values)
+                .put(`/groups/${props.groupId}/questions/${props.questionId}/answers/${props.answerInfo.id}`, values)
                 .then(function (response) {
-                    message.success("发布成功");
+                    message.success("修改成功");
                     setConfirmLoading(false);
                     setVisible(false);
                     form.resetFields();
-                    props.OnCreateAnswerSuccess && props.OnCreateAnswerSuccess();
+                    props.OnUpdateAnswerSuccess();
                 })
                 .catch(function (error) {
-                    message.error("发布失败");
+                    message.error("修改失败");
                     setConfirmLoading(false);
                     setVisible(false);
                 });
@@ -44,10 +43,10 @@ export default function CreateAnswer(props) {
     return (
         <div>
             <Button type="primary" onClick={showModal}>
-                我来回答
+                修改回答
             </Button>
             <Modal
-                title="创建回答"
+                title="修改回答"
                 visible={visible}
                 onOk={handleOk}
                 okText="发布"
@@ -57,7 +56,7 @@ export default function CreateAnswer(props) {
             >
                 <h2>{props.questionTitle}</h2>
                 <p>{props.questionDescription}</p>
-                <Form name="article" form={form}>
+                <Form form={form} initialValues={props.answerInfo}>
                     <Form.Item
                         name="content"
                         rules={[

@@ -2,4 +2,6 @@
   margin-top: 16px;
   padding: 16px;
   background-color: lightgray;
+  display: flex;
+  justify-content: space-between;
 }

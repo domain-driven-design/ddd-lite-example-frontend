@@ -39,7 +39,7 @@ export default function Question(props) {
                         groupId={props.match.params.groupId}
                         questionInfo={questionInfo}
                         OnUpdateQuestionSuccess={() => getQuestion()}
-                    ></UpdateQuestion>
+                    />
                 }
             </div>
             <CreateAnswer
@@ -47,6 +47,7 @@ export default function Question(props) {
                 questionId={props.match.params.id}
                 questionTitle={questionInfo.title}
                 questionDescription={questionInfo.description}
+                OnCreateAnswerSuccess={() => window.location.reload()}
             >
             </CreateAnswer>
             <Answers groupId={props.match.params.groupId} questionId={props.match.params.id}></Answers>
