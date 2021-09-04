@@ -21,14 +21,13 @@ export default function CreateQuestion(props) {
             axios
                 .post(  `/groups/${props.groupId}/questions`, values)
                 .then(function (response) {
-                    message.success("发布成功");
                     setConfirmLoading(false);
                     setVisible(false);
                     form.resetFields();
-                    props.OnCreateQuestionSuccess();
+                    props.onCreateQuestionSuccess(response.id);
+                    message.success("发布成功");
                 })
                 .catch(function (error) {
-                    message.error("发布失败");
                     setConfirmLoading(false);
                     setVisible(false);
                 });
