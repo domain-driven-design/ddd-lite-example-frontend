@@ -11,7 +11,7 @@ export default function BaseLayout(props) {
                 <span className="logo" >问答平台</span>
                 <Menu theme="dark" mode="horizontal" selectedKeys={props.location.pathname}>
                     <Menu.Item key="/groups/default/questions">
-                        <Link to="/groups/default/questions">问题</Link>
+                        <Link to="/groups/default/questions">广场</Link>
                     </Menu.Item>
                     <Menu.Item key="/groups">
                         <Link to="/groups">圈子</Link>

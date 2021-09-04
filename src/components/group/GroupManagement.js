@@ -39,13 +39,15 @@ export default function GroupManagement(props) {
     function showManagementContent(key) {
         switch (key) {
             case "member":
-                return <GroupMemberManagement groupId={id}></GroupMemberManagement>;
+                return <GroupMemberManagement groupId={id}/>;
             case "question":
-                return <QuestionManagement groupId={id}></QuestionManagement>;
+                return <QuestionManagement groupId={id}/>;
             case "answer":
                 return <p>answer</p>;
             case "setting":
-                return <GroupSetting groupId={id} groupInfo={groupInfo}></GroupSetting>;
+                return <GroupSetting groupId={id} groupInfo={groupInfo}/>;
+            default:
+                return null;
         }
     }
 

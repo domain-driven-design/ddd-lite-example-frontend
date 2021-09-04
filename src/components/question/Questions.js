@@ -4,7 +4,6 @@ import {List, Skeleton} from "antd";
 
 import "./Questions.css";
 import CreateQuestion from "./CreateQuestion";
-import CreateAnswer from "./CreateAnswer";
 import LoadMore from "../common/LoadMore";
 
 import {withRouter} from 'react-router-dom';
@@ -51,7 +50,10 @@ function Questions(props) {
     return (
 
         <div>
-            <CreateQuestion groupId={props.groupId} onCreateQuestionSuccess={onCreateQuestionSuccess}/>
+            <div className="questions-header">
+                <div/>
+                <CreateQuestion groupId={props.groupId} onCreateQuestionSuccess={onCreateQuestionSuccess}/>
+            </div>
             <List
                 loading={loading}
                 itemLayout="horizontal"
@@ -60,12 +62,11 @@ function Questions(props) {
                 renderItem={item => (
                     <List.Item
                         actions={[
-                            <CreateAnswer
-                                groupId={props.groupId}
-                                questionId={item.id}
-                                questionTitle={item.title}
-                                questionDescription={item.description}
-                            />
+                            <a
+                                href={`/groups/${props.groupId}/questions/${item.id}`}
+                                target="view_window">
+                                查看详情
+                            </a>
                         ]}
                     >
                         <Skeleton avatar title={false} loading={item.loading} active>
