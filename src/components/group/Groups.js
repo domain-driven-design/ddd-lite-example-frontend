@@ -1,15 +1,18 @@
 import React, {useEffect, useState} from "react";
 import axios from "../../common/axios";
-import {Card, message, Pagination} from "antd";
+import {Card, List, message, Pagination, Skeleton} from "antd";
 
 import "./Groups.css";
 import CreateGroup from "./CreateGroup";
+import LoadMore from "../common/LoadMore";
 
 export default function Groups() {
     const size = 10;
-    const [content, setContent] = useState([]);
-    const [page, setPage] = useState(1);
-    const [total, setTotal] = useState(0);
+    const [page, setPage] = useState(0);
+    const [loading, setLoading] = useState(false);
+    const [total, setTotal] = useState([]);
+    const [isLast, setIsLast] = useState(false);
+
 
     useEffect(() => {
         getGroups(page, size);
@@ -19,22 +22,23 @@ export default function Groups() {
         axios
             .get("/groups", {
                 params: {
-                    page: page - 1,
+                    page,
                     size,
                     sort: "createdAt,desc",
                 },
             })
             .then(function (data) {
-                setContent(data.content);
-                setTotal(data.totalElements);
+                setTotal(total.concat(data.content));
+                setIsLast(data.last);
+                setLoading(false);
             })
             .catch(function (error) {
-                message.error(error);
+                setLoading(false);
             });
     }
 
-    function onChange(page) {
-        setPage(page);
+    function onLoadMore() {
+        setPage(page + 1);
     }
 
     function OnCreateGroupSuccess() {
@@ -44,21 +48,33 @@ export default function Groups() {
 
     return (
         <div>
-            <CreateGroup OnCreateGroupSuccess={OnCreateGroupSuccess}></CreateGroup>
-            {content.map((item) => (
-                <Card title={item.name} key={item.id} className="group-item">
-                    <p className="group-content">{item.description}</p>
-                    <p>已有{item.members.length}位成员</p>
-                    <p>{item.createdAt}</p>
-                    <a href={`/groups/${item.id}`} target="view_window">查看详情</a>
-                </Card>
-            ))}
-            <Pagination
-                className="pagination"
-                defaultCurrent={page}
-                defaultPageSize={size}
-                total={total}
-                onChange={onChange}
+            <CreateGroup OnCreateGroupSuccess={OnCreateGroupSuccess}/>
+            <List
+                loading={loading}
+                itemLayout="horizontal"
+                loadMore={<LoadMore notMore={isLast} loading={loading} onLoadMore={onLoadMore}/>}
+                dataSource={total}
+                renderItem={item => (
+                    <List.Item
+                        actions={[
+                            <a href={`/groups/${item.id}`} target="view_window">查看详情</a>
+                        ]}
+                    >
+                        <Skeleton avatar title={false} loading={item.loading} active>
+                            <List.Item.Meta
+                                title={
+                                    <a
+                                        href={`/groups/${item.id}`}
+                                        target="view_window">
+                                        {item.name}
+                                    </a>
+                                }
+                                description={item.description}
+                            />
+                            <div>已有{item.members.length}位成员</div>
+                        </Skeleton>
+                    </List.Item>
+                )}
             />
         </div>
     );
