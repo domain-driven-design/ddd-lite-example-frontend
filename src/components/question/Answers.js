@@ -1,15 +1,17 @@
 import React, {useEffect, useState} from "react";
 import axios from "../../common/axios";
-import {message, Pagination} from "antd";
+import {List, message, Pagination, Skeleton} from "antd";
 
 import "./Answers.css";
 import UpdateAnswer from "./UpdateAnswer";
+import LoadMore from "../common/LoadMore";
 
 export default function Answers(props) {
     const size = 10;
-    const [content, setContent] = useState([]);
-    const [page, setPage] = useState(1);
-    const [total, setTotal] = useState(0);
+    const [page, setPage] = useState(0);
+    const [loading, setLoading] = useState(false);
+    const [total, setTotal] = useState([]);
+    const [isLast, setIsLast] = useState(false);
 
     const userId = window.localStorage.userId;
 
@@ -21,50 +23,52 @@ export default function Answers(props) {
         axios
             .get(`/groups/${props.groupId}/questions/${props.questionId}/answers`, {
                 params: {
-                    page: page - 1,
+                    page,
                     size,
                     sort: "createdAt,desc",
                 },
             })
             .then(function (data) {
-                setContent(data.content);
-                setTotal(data.totalElements);
+                setTotal(total.concat(data.content));
+                setIsLast(data.last);
+                setLoading(false);
             })
             .catch(function (error) {
-                message.error(error);
+                setLoading(false);
             });
     }
 
-    function onChange(page) {
-        setPage(page);
+    function onLoadMore() {
+        setPage(page + 1);
     }
 
     return (
         <div>
-            {content.map((item) => (
-                <div key={item.id} className="answer-item">
-                    <div>
-                        <p>{item.content}</p>
-                        <p>{item.createdAt}</p>
-                    </div>
-                    {
-                        item.createdBy === userId &&
-                        <UpdateAnswer
-                            groupId={props.groupId}
-                            questionId={props.questionId}
-                            answerInfo={item}
-                            OnUpdateAnswerSuccess={() => getAnswers(page, size)}
-                        />
-                    }
-
-                </div>
-            ))}
-            <Pagination
-                className="pagination"
-                defaultCurrent={page}
-                defaultPageSize={size}
-                total={total}
-                onChange={onChange}
+            <List
+                loading={loading}
+                itemLayout="horizontal"
+                loadMore={<LoadMore notMore={isLast} loading={loading} onLoadMore={onLoadMore}/>}
+                dataSource={total}
+                renderItem={item => (
+                    <List.Item
+                        actions={[
+                            item.createdBy === userId &&
+                            <UpdateAnswer
+                                groupId={props.groupId}
+                                questionId={props.questionId}
+                                answerInfo={item}
+                                OnUpdateAnswerSuccess={() => getAnswers(page, size)}
+                            />
+                        ]}
+                    >
+                        <Skeleton avatar title={false} loading={item.loading} active>
+                            <List.Item.Meta
+                                title={item.creator?.name}
+                                description={item.content}
+                            />
+                        </Skeleton>
+                    </List.Item>
+                )}
             />
         </div>
     );
