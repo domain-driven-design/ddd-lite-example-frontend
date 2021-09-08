@@ -8,7 +8,7 @@ export default function UpdateQuestionStatus(props) {
 
     function handleOpenQuestion() {
         axios
-            .put(  `/groups/${props.groupId}/questions/${props.questionInfo.id}/status`, {status: "OPENED"})
+            .put(`/questions/${props.questionInfo.id}/status`, {status: "OPENED"})
             .then(function (response) {
                 message.success("修改成功");
                 setOpenQuestionModalVisible(false);
@@ -21,7 +21,7 @@ export default function UpdateQuestionStatus(props) {
 
     function handleCloseQuestion() {
         axios
-            .put(  `/groups/${props.groupId}/questions/${props.questionInfo.id}/status`, {status: "CLOSED"})
+            .put(`/questions/${props.questionInfo.id}/status`, {status: "CLOSED"})
             .then(function (response) {
                 message.success("修改成功");
                 setCloseQuestionModalVisible(false);

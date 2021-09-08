@@ -18,7 +18,7 @@ export default function UpdateAnswer(props) {
             setConfirmLoading(true);
 
             axios
-                .put(`/groups/${props.groupId}/questions/${props.questionId}/answers/${props.answerInfo.id}`, values)
+                .put(`/questions/${props.questionId}/answers/${props.answerInfo.id}`, values)
                 .then(function (response) {
                     message.success("修改成功");
                     setConfirmLoading(false);

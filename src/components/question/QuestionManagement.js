@@ -16,7 +16,7 @@ export default function QuestionManagement(props) {
 
     function getManagementQuestions(page, size) {
         axios
-            .get(`/groups/${props.groupId}/questions/management`, {
+            .get(`/questions/management`, {
                 params: {
                     page: page - 1,
                     size,

@@ -12,6 +12,11 @@ service.interceptors.request.use(
                 "token"
             )}`;
         }
+
+        let paths = window.location.pathname.split('/');
+        if (paths.length > 3 && paths[1] === "groups") {
+            config.headers["Group-Id"] = paths[2];
+        }
         return config;
     },
     (error) => {

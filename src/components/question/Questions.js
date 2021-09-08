@@ -22,12 +22,12 @@ function Questions(props) {
     function getQuestions(page, size) {
         setLoading(true);
         axios
-            .get(`/groups/${props.groupId}/questions`, {
+            .get(`/questions`, {
                 params: {
                     page,
                     size,
                     sort: "createdAt,desc",
-                },
+                }
             })
             .then(function (data) {
                 setTotal(total.concat(data.content));

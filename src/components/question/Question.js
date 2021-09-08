@@ -13,7 +13,7 @@ export default function Question(props) {
     const userId = window.localStorage.userId;
 
     function getQuestion() {
-        axios.get(`/groups/${props.match.params.groupId}/questions/${props.match.params.id}`)
+        axios.get(`/questions/${props.match.params.id}`)
             .then(function (data) {
                 setQuestionInfo(data);
             })

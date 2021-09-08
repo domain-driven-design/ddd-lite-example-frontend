@@ -21,7 +21,7 @@ export default function Answers(props) {
 
     function getAnswers(page, size) {
         axios
-            .get(`/groups/${props.groupId}/questions/${props.questionId}/answers`, {
+            .get(`/questions/${props.questionId}/answers`, {
                 params: {
                     page,
                     size,

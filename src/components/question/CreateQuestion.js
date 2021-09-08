@@ -19,7 +19,7 @@ export default function CreateQuestion(props) {
             setConfirmLoading(true);
 
             axios
-                .post(  `/groups/${props.groupId}/questions`, values)
+                .post(`/questions`, values)
                 .then(function (response) {
                     setConfirmLoading(false);
                     setVisible(false);
@@ -32,7 +32,6 @@ export default function CreateQuestion(props) {
                     setVisible(false);
                 });
         })
-
 
 
     };
@@ -66,7 +65,7 @@ export default function CreateQuestion(props) {
                             },
                         ]}
                     >
-                        <Input />
+                        <Input/>
                     </Form.Item>
 
                     <Form.Item
@@ -79,7 +78,7 @@ export default function CreateQuestion(props) {
                             },
                         ]}
                     >
-                        <Input.TextArea rows={4} />
+                        <Input.TextArea rows={4}/>
                     </Form.Item>
                 </Form>
             </Modal>

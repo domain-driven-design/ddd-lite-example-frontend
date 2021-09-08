@@ -19,7 +19,7 @@ export default function CreateAnswer(props) {
             setConfirmLoading(true);
 
             axios
-                .post(`/groups/${props.groupId}/questions/${props.questionId}/answers`, values)
+                .post(`/questions/${props.questionId}/answers`, values)
                 .then(function (response) {
                     message.success("发布成功");
                     setConfirmLoading(false);
