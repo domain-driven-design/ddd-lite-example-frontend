@@ -6,7 +6,7 @@ import Login from "./pages/Login";
 import User from "./pages/User";
 
 import BaseLayout from "./components/BaseLayout";
-import Groups from "./components/group/Groups";
+import Groups from "./pages/Groups";
 import Question from "./components/question/Question";
 import Group from "./components/group/Group";
 import QuestionsPage from "./components/question/QuestionsPage";

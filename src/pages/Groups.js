@@ -1,10 +1,10 @@
 import React, {useEffect, useState} from "react";
-import axios from "../../services/axios";
 import {List, Skeleton} from "antd";
 
 import "./Groups.css";
-import CreateGroup from "./CreateGroup";
-import LoadMore from "../common/LoadMore";
+import CreateGroup from "../components/group/CreateGroup";
+import LoadMore from "../components/common/LoadMore";
+import GroupService from "../services/GroupService";
 
 export default function Groups() {
     const size = 10;
@@ -19,14 +19,7 @@ export default function Groups() {
     }, [page]);
 
     function getGroups(page, size) {
-        axios
-            .get("/groups", {
-                params: {
-                    page,
-                    size,
-                    sort: "createdAt,desc",
-                },
-            })
+        GroupService.getGroups(page, size)
             .then(function (data) {
                 setTotal(total.concat(data.content));
                 setIsLast(data.last);
@@ -48,7 +41,7 @@ export default function Groups() {
 
     return (
         <div>
-            <CreateGroup OnCreateGroupSuccess={OnCreateGroupSuccess}/>
+            <CreateGroup OnCreateGroupSuccess={OnCreateGroupSuccess} createGroup={GroupService.createGroup}/>
             <List
                 loading={loading}
                 itemLayout="horizontal"

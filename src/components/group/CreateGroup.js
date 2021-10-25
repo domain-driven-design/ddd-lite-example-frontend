@@ -17,8 +17,7 @@ export default function CreateGroup(props) {
         form.validateFields().then(values => {
             setConfirmLoading(true);
 
-            axios
-                .post(  `/groups`, values)
+            props.createGroup(values.name, values.description)
                 .then(function (response) {
                     message.success("发布成功");
                     setConfirmLoading(false);
