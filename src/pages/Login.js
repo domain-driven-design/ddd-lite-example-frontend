@@ -24,8 +24,6 @@ export default function Login(props) {
         AuthorizeService.login(values.email, values.password)
             .then(function (data) {
                 message.success("登录成功");
-                window.localStorage["userId"] = data.userId;
-                window.localStorage["token"] = data.token;
                 props.history.push("/");
             })
             .catch(function () {

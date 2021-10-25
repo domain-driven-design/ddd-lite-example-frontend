@@ -3,7 +3,7 @@ import "antd/dist/antd.css";
 import {BrowserRouter as Router, Route, Switch} from "react-router-dom";
 import Register from "./pages/Register";
 import Login from "./pages/Login";
-import User from "./components/user/User";
+import User from "./pages/User";
 
 import BaseLayout from "./components/BaseLayout";
 import Groups from "./components/group/Groups";
