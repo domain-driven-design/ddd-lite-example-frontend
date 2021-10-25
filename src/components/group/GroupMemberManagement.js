@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from "react"
 import {Button, message, Pagination, Select} from "antd";
-import axios from "../../common/axios";
+import axios from "../../services/axios";
 
 import "./GroupMemberManagement.css"
 import {Option} from "antd/es/mentions";

@@ -1,6 +1,6 @@
 import React from "react";
 import {message, Modal, Switch} from "antd";
-import axios from "../../common/axios";
+import axios from "../../services/axios";
 
 export default function UpdateQuestionStatus(props) {
     const [openQuestionModalVisible, setOpenQuestionModalVisible] = React.useState(false);

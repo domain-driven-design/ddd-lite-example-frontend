@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from "react";
-import axios from "../../common/axios";
+import axios from "../../services/axios";
 import {List, message, Pagination, Skeleton} from "antd";
 
 import "./Answers.css";

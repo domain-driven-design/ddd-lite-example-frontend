@@ -4,7 +4,7 @@ import "./GroupManagement.css";
 import {Menu, message} from "antd";
 import GroupMemberManagement from "./GroupMemberManagement";
 import QuestionManagement from "../question/QuestionManagement";
-import axios from "../../common/axios";
+import axios from "../../services/axios";
 import GroupSetting from "./GroupSetting";
 
 export default function GroupManagement(props) {

@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from "react";
-import axios from "../../common/axios";
-import {Card, List, message, Pagination, Skeleton} from "antd";
+import axios from "../../services/axios";
+import {List, Skeleton} from "antd";
 
 import "./Groups.css";
 import CreateGroup from "./CreateGroup";

@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from "react"
 import {Button, Col, message, Pagination, Row} from "antd";
-import axios from "../../common/axios";
+import axios from "../../services/axios";
 
 import "./QuestionManagement.css"
 

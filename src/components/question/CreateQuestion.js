@@ -1,7 +1,7 @@
 import React from "react";
 import {Button, Form, Input, message, Modal} from "antd";
 
-import axios from "../../common/axios";
+import axios from "../../services/axios";
 
 export default function CreateQuestion(props) {
     const [visible, setVisible] = React.useState(false);

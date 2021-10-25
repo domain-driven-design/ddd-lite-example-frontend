@@ -1,8 +1,8 @@
 import "./App.css";
 import "antd/dist/antd.css";
 import {BrowserRouter as Router, Route, Switch} from "react-router-dom";
-import Register from "./components/auth/Register";
-import Login from "./components/auth/Login";
+import Register from "./pages/Register";
+import Login from "./pages/Login";
 import User from "./components/user/User";
 
 import BaseLayout from "./components/BaseLayout";

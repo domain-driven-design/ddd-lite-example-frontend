@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from "react"
 
 import "./GroupMemberManagement.css"
-import axios from "../../common/axios";
+import axios from "../../services/axios";
 import {Button, Divider, Form, Input, message, Select} from "antd";
 
 export default function GroupSetting(props) {

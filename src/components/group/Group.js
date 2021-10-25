@@ -1,6 +1,6 @@
 import {Button, message} from "antd";
 import React, {useEffect, useState} from "react"
-import axios from "../../common/axios";
+import axios from "../../services/axios";
 import Questions from "../question/Questions";
 
 import "./Group.css";

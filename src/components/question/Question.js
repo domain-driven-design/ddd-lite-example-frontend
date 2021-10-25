@@ -1,6 +1,6 @@
 import {message} from "antd";
 import React, {useEffect, useState} from "react"
-import axios from "../../common/axios";
+import axios from "../../services/axios";
 import Answers from "./Answers";
 import CreateAnswer from "./CreateAnswer";
 import UpdateQuestion from "./UpdateQuestion";
